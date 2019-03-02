@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('how', function () {
+    return view('how');
+});
+Route::get('professional', function () {
+    return view('professional');
+});
+Route::get('aboutme', function () {
+    return view('aboutme');
 });
