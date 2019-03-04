@@ -23,3 +23,5 @@ Route::get('professional', function () {
 Route::get('aboutme', function () {
     return view('aboutme');
 });
+Route::resource('credits','CreditsController');
+Route::resource('contents','ContentsController');

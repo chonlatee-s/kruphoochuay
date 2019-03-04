@@ -8,7 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+window.axios = require('axios');
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,6 +26,8 @@ Vue.component('how-component', require('./components/HowComponent.vue').default)
 Vue.component('professional-component', require('./components/ProfessionalComponent.vue').default);
 Vue.component('aboutme-component', require('./components/AboutmeComponent.vue').default);
 Vue.component('share-component', require('./components/ShareComponent.vue').default);
+Vue.component('credits-component', require('./components/CreditsComponent.vue').default);
+Vue.component('contents-component', require('./components/ContentsComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid big_box">
-        <div class="container mb-4">
+        <div class="container">
             <div class="row text-center">
                 <div class="col-12">   
                     <p class="topicTop">เกี่ยวกับเรา</p>
@@ -9,7 +9,7 @@
         </div>
 
         <!-- banner -->
-        <div class="container mb-4">
+        <div class="container">
             <div class="row text-center">
                 <div class="col-10 mx-auto">
                     <div class="card bg-light mb-3" style="max-with: 40rem;">

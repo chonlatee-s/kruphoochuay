@@ -14,13 +14,13 @@
                         <a class="nav-link" href="how">ครูผู้ช่วยสอบอะไรบ้าง</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">เนื้อหาที่เกี่ยวข้อง</a>
+                        <a class="nav-link" href="contents">เนื้อหาที่เกี่ยวข้อง</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="professional">มาตรฐานวิชาชีพครู</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ผู้ร่วมแบ่งปันความรู้</a>
+                        <a class="nav-link" href="credits">ผู้ร่วมแบ่งปันความรู้</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="aboutme">เกี่ยวกับเรา</a>
