@@ -25,3 +25,4 @@ Route::get('aboutme', function () {
 });
 Route::resource('credits','CreditsController');
 Route::resource('contents','ContentsController');
+Route::resource('predicts','PredictsController');

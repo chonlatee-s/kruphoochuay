@@ -14,14 +14,12 @@
                 <table id="myTable" class="table table-bordered table-striped table-sm">
                     <thead class="table-primary text-center">
                         <tr>
-                            <th>#</th>
                             <th>หัวข้อ</th>
                             <th>รายละเอียด</th>
                         </tr>
                     </thead>
                     <tbody class="bodytable">
                         <tr>
-                            <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                         </tr>

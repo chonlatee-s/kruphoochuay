@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ContentsController extends Controller
+class PredictsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class ContentsController extends Controller
      */
     public function index()
     {
-
+        return view('predicts');
     }
 
     /**

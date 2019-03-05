@@ -4,8 +4,8 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class ContentsController extends Controller
+use App\Predict;
+class PredictsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +46,8 @@ class ContentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $predict = Predict::find($id);
+        return response() -> json($predict);
     }
 
     /**

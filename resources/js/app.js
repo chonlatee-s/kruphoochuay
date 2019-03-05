@@ -28,6 +28,8 @@ Vue.component('aboutme-component', require('./components/AboutmeComponent.vue').
 Vue.component('share-component', require('./components/ShareComponent.vue').default);
 Vue.component('credits-component', require('./components/CreditsComponent.vue').default);
 Vue.component('contents-component', require('./components/ContentsComponent.vue').default);
+Vue.component('predicts-component', require('./components/PredictsComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
