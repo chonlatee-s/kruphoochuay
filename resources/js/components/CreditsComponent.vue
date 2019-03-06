@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col-10 mx-auto">   
                 <table id="myTable" class="table table-bordered table-striped table-sm">

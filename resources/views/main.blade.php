@@ -22,5 +22,6 @@
         <p style="font-size: 12px; color:gray">Copyright © 2019 CHONLATEE SINSART</p>
     </div>
     <script src="js/app.js"></script>
+    <script src="js/shake.js"></script>
 </body>
 </html>

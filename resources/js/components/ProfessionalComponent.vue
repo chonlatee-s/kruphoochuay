@@ -11,7 +11,7 @@
         <div class="container" id="contentAll">
             <div class="row mb-3">
                 <div class="col-md-10 col-sm-10 mx-auto">   
-                    <div class="container mt-3">
+                    <div class="mt-3">
                         <h5>ข้อบังคับคุรุสภา ว่าด้วยมาตรฐานวิชาชีพ พ.ศ.2556</h5>
                         <p style="font-size:14px; font-weight:300">มาตรฐานวิชาชีพทางการศึกษา คือ ข้อกำหนดเกี่ยวกับคุณลักษณะ และคุณภาพที่พึงประสงค์ในการประกอบวิชาชีพทางการศึกษา ซึ่งผู้ประกอบวิชาชีพทางการศึกษาต้องประพฤติปฏิบัติตาม ประกอบด้วย </p>
                         <div class="bg-light media border p-3">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <div class="container mt-3">
+                    <div class="mt-3">
                         <div class="bg-light media border p-3">
                             <img src="../../../public/img/teacher_sm2.jpg" alt="ข้อสอบครูผู้ช่วย" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                             <div class="media-body">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="container mt-3">
+                    <div class="mt-3">
                         <div class="bg-light media border p-3">
                             <img src="../../../public/img/teacher_sm3.jpg" alt="ข้อสอบครูผู้ช่วย" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                             <div class="media-body">
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container mt-3">
+                    <div class="mt-3">
                         <p style="font-size:14px; font-weight:300"><a href="http://www.ksp.or.th/ksp2013/content/view.php?mid=136&did=1193" target="_blank">ข้อมูลอ้างอิง เว็บไซต์คุรุสภา</a></p>
                     </div>
                 </div>

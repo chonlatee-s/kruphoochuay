@@ -2156,11 +2156,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 $(document).ready(function () {
   $('#contentAll').hide();
   $('#contentAll').fadeIn(500);
@@ -2278,6 +2273,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+$(document).ready(function () {
+  $('#predict').hide(); // shake
+
+  var shakeEvent = new Shake({
+    threshold: 15
+  });
+  shakeEvent.start();
+  var count = 1;
+  window.addEventListener('shake', function () {
+    count += 1;
+
+    if (count == 2) {
+      stopShake(); // หยุดการสั่นเมื่อได้ผลลัพธ์
+
+      predict_fn(); // ทำงานฟังก์ชันทำนาย
+    }
+  }, false);
+
+  function stopShake() {
+    shakeEvent.stop();
+  }
+
+  function predict_fn() {
+    $('#predict').show();
+    $('#ref,#main').hide();
+    setTimeout(function () {
+      var number = Math.floor(Math.random() * 28 + 1);
+      axios.get('/api/predicts/' + number).then(function (response) {
+        var data = response.data;
+        var result = data.result;
+        var number = data.id;
+        $('#animate').hide();
+        $('#ref').show();
+        $('#showing').html('คุณได้เซียมซีใบที่ ' + number);
+        $('#result').html(result);
+      });
+    }, 3000);
+  }
+
+  $('#btn_oncom').click(function () {
+    predict_fn();
+  });
+});
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -38214,7 +38267,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
+      _c("div", [
         _c("div", { staticClass: "row text-center" }, [
           _c("div", { staticClass: "col-10 mx-auto" }, [
             _c(
@@ -38452,7 +38505,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
+      _c("div", [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-10 mx-auto" }, [
             _c(
@@ -38509,7 +38562,7 @@ var render = function() {
   return _c("div", { staticClass: "container-fluid big_box" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
+    _c("div", {}, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-10 mx-auto" }, [
           _c(
@@ -38642,106 +38695,104 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { attrs: { id: "contentAll" } }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-10 mx-auto" }, [
-              _c("div", { staticClass: "card-group" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-body",
-                      staticStyle: { "padding-top": "0" }
-                    },
-                    [
-                      _c("p", { staticClass: "text-center hcard" }, [
-                        _vm._v("ก")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticClass: "card-text",
-                          staticStyle: { "font-weight": "200" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    ภาค ก คือความรอบรู้ ความสามารถทั่วไป และความรู้ความเข้าใจเกี่ยวกับคุณธรรม จริยธรรม และอุดมการณ์ของความเป็นครู และมาตรฐานวิชาชีพทางการศึกษา\n                                "
-                          )
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _c("a", { attrs: { href: "#p1", id: "l1" } }, [
-                        _vm._v("อ่านเพิ่มเติม")
-                      ])
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-10 mx-auto" }, [
+            _c("div", { staticClass: "card-group" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-body",
+                    staticStyle: { "padding-top": "0" }
+                  },
+                  [
+                    _c("p", { staticClass: "text-center hcard" }, [
+                      _vm._v("ก")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "card-text",
+                        staticStyle: { "font-weight": "200" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                ภาค ก คือความรอบรู้ ความสามารถทั่วไป และความรู้ความเข้าใจเกี่ยวกับคุณธรรม จริยธรรม และอุดมการณ์ของความเป็นครู และมาตรฐานวิชาชีพทางการศึกษา\n                            "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-footer" }, [
+                  _c("small", { staticClass: "text-muted" }, [
+                    _c("a", { attrs: { href: "#p1", id: "l1" } }, [
+                      _vm._v("อ่านเพิ่มเติม")
                     ])
                   ])
-                ]),
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-body",
+                    staticStyle: { "padding-top": "0" }
+                  },
+                  [
+                    _c("p", { staticClass: "text-center hcard" }, [
+                      _vm._v("ข")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "card-text",
+                        staticStyle: { "font-weight": "200" }
+                      },
+                      [_vm._v("ภาค ข คือความรู้ความสามารถที่ใช้เฉพาะตำแหน่ง")]
+                    )
+                  ]
+                ),
                 _vm._v(" "),
-                _c("div", { staticClass: "card" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-body",
-                      staticStyle: { "padding-top": "0" }
-                    },
-                    [
-                      _c("p", { staticClass: "text-center hcard" }, [
-                        _vm._v("ข")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticClass: "card-text",
-                          staticStyle: { "font-weight": "200" }
-                        },
-                        [_vm._v("ภาค ข คือความรู้ความสามารถที่ใช้เฉพาะตำแหน่ง")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _c("a", { attrs: { href: "#p2", id: "l2" } }, [
-                        _vm._v("อ่านเพิ่มเติม")
-                      ])
+                _c("div", { staticClass: "card-footer" }, [
+                  _c("small", { staticClass: "text-muted" }, [
+                    _c("a", { attrs: { href: "#p2", id: "l2" } }, [
+                      _vm._v("อ่านเพิ่มเติม")
                     ])
                   ])
-                ]),
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card-body",
+                    staticStyle: { "padding-top": "0" }
+                  },
+                  [
+                    _c("p", { staticClass: "text-center hcard" }, [
+                      _vm._v("ค")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "card-text",
+                        staticStyle: { "font-weight": "200" }
+                      },
+                      [_vm._v("ภาค ค คือความเหมาะสมกับตำแหน่งและวิชาชีพ")]
+                    )
+                  ]
+                ),
                 _vm._v(" "),
-                _c("div", { staticClass: "card" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-body",
-                      staticStyle: { "padding-top": "0" }
-                    },
-                    [
-                      _c("p", { staticClass: "text-center hcard" }, [
-                        _vm._v("ค")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticClass: "card-text",
-                          staticStyle: { "font-weight": "200" }
-                        },
-                        [_vm._v("ภาค ค คือความเหมาะสมกับตำแหน่งและวิชาชีพ")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _c("a", { attrs: { href: "#p3", id: "l3" } }, [
-                        _vm._v("อ่านเพิ่มเติม")
-                      ])
+                _c("div", { staticClass: "card-footer" }, [
+                  _c("small", { staticClass: "text-muted" }, [
+                    _c("a", { attrs: { href: "#p3", id: "l3" } }, [
+                      _vm._v("อ่านเพิ่มเติม")
                     ])
                   ])
                 ])
@@ -38750,293 +38801,281 @@ var staticRenderFns = [
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "container mt-2" }, [
-          _c("div", { staticClass: "row", attrs: { id: "p1" } }, [
-            _c("div", { staticClass: "col-10 mx-auto" }, [
-              _c("div", { staticClass: "card p-3" }, [
-                _c("blockquote", { staticClass: "blockquote mb-0 card-body" }, [
-                  _c("p", [
-                    _vm._v("ภาค ก มีรายละเอียดการสอบดังนี้ (150 คะแนน)")
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", { staticStyle: { "font-size": "16px" } }, [
-                      _vm._v(
-                        "ความรอบรู้ 50 คะแนน ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                    "
-                      ),
-                      _c("ul", [
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "สังคม เศรษฐกิจ การเมือง และเหตุการณ์บ้านเมืองปัจจุบัน"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("ยุทธศาสตร์การปฏิรูปประเทศ")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("นโยบายของรัฐบาลที่เกี่ยวข้องกับการศึกษา")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("วัฒนธรรมไทย และขนบธรรมเนียมประเพณีไทย")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "กฎหมายที่เกี่ยวข้องกับการปฏิบัติราชการ\n                                            "
-                          ),
-                          _c("ul", [
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v("กฎหมายเกี่ยวกับการศึกษาแห่งชาติ")
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v(
-                                "กฎหมายเกี่ยวกับระเบียบบริหารราชการกระทรวงศึกษาธิการ"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v(
-                                "กฎหมายเกี่ยวกับสภาครูและบคุลากรทางการศึกษา"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v(
-                                "กฎหมายเกี่ยวกับระเบียบข้าราชการครูและบุคลากรทางการศึกษา"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v("กฎหมายเกี่ยวกับการคุ้มครองเด็ก")
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v(
-                                "กฎหมายเกี่ยวกับการจัดการศึกษาสำหรับคนพิการ"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticStyle: { "font-size": "14px" } }, [
-                              _vm._v(
-                                "กฎหมาย กฎ ระเบียบ หลักเกณฑ์และวิธีการที่เกี่ยวข้องโดยตรงกับส่วนราชการ (ถ้ามีจะระบุไว้ในประกาศรับสมัครสอบแข่งขัน)"
-                              )
-                            ])
+        _c("div", { staticClass: "row mt-2", attrs: { id: "p1" } }, [
+          _c("div", { staticClass: "col-10 mx-auto" }, [
+            _c("div", { staticClass: "card p-3" }, [
+              _c("blockquote", { staticClass: "blockquote mb-0 card-body" }, [
+                _c("p", [_vm._v("ภาค ก มีรายละเอียดการสอบดังนี้ (150 คะแนน)")]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", { staticStyle: { "font-size": "16px" } }, [
+                    _vm._v(
+                      "ความรอบรู้ 50 คะแนน ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                "
+                    ),
+                    _c("ul", [
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "สังคม เศรษฐกิจ การเมือง และเหตุการณ์บ้านเมืองปัจจุบัน"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("ยุทธศาสตร์การปฏิรูปประเทศ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("นโยบายของรัฐบาลที่เกี่ยวข้องกับการศึกษา")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("วัฒนธรรมไทย และขนบธรรมเนียมประเพณีไทย")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "กฎหมายที่เกี่ยวข้องกับการปฏิบัติราชการ\n                                        "
+                        ),
+                        _c("ul", [
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v("กฎหมายเกี่ยวกับการศึกษาแห่งชาติ")
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v(
+                              "กฎหมายเกี่ยวกับระเบียบบริหารราชการกระทรวงศึกษาธิการ"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v("กฎหมายเกี่ยวกับสภาครูและบคุลากรทางการศึกษา")
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v(
+                              "กฎหมายเกี่ยวกับระเบียบข้าราชการครูและบุคลากรทางการศึกษา"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v("กฎหมายเกี่ยวกับการคุ้มครองเด็ก")
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v("กฎหมายเกี่ยวกับการจัดการศึกษาสำหรับคนพิการ")
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticStyle: { "font-size": "14px" } }, [
+                            _vm._v(
+                              "กฎหมาย กฎ ระเบียบ หลักเกณฑ์และวิธีการที่เกี่ยวข้องโดยตรงกับส่วนราชการ (ถ้ามีจะระบุไว้ในประกาศรับสมัครสอบแข่งขัน)"
+                            )
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "ความรู้ความสามารถด้านภาษาอังกฤษที่เกี่ยวข้องกับการปฏิบัติงาน โดยให้เป็นไปตามที่ส่วนราชการกำหนด"
-                          )
                         ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticStyle: { "font-size": "16px" } }, [
-                      _vm._v(
-                        "ความสามารถทั่วไป 50 คะแนน ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                    "
-                      ),
-                      _c("ul", [
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "ความสามารถด้านตัวเลข ให้ทดสอบโดยการวัดความสามารถในการคิดเลข สรุปเหตุผลเกี่ยวกับตัวเลขและข้อมูลต่าง ๆ"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "ความสามารถด้านภาษาไทย ให้ทดสอบความเข้าใจภาษา การอ่านจับใจความ การสรุปความ การตีความ การขยายความ การเขียนข้อความ การสะกดคำ การแต่งประโยค และคำศัพท์"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "ความสามารถด้านเหตุผล ให้ทดสอบโดยการวัดความสามารถในการคิดสรุปหาเหตุผล และอุปมาอุปไมย"
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticStyle: { "font-size": "16px" } }, [
-                      _vm._v(
-                        "ความรู้ความเข้าใจเกี่ยวกับคุณธรรม จริยธรรม และอุดมการณ์ของความเป็นครู และมาตรฐานวิชาชีพทางการศึกษา (50 คะแนน) ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                    "
-                      ),
-                      _c("ul", [
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("คุณธรรม จริยธรรม และอุดมการณ์ของความเป็นครู")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("มาตรฐานด้านความรู้และประสบการณ์วิชาชีพ")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("มาตรฐานด้านการปฏิบัติงาน")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("มาตรฐานด้านการปฏิบัติตน")
-                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "ความรู้ความสามารถด้านภาษาอังกฤษที่เกี่ยวข้องกับการปฏิบัติงาน โดยให้เป็นไปตามที่ส่วนราชการกำหนด"
+                        )
                       ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("footer", { staticClass: "blockquote-footer" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href:
-                              "http://www.otepc.go.th/images/0_%E0%B8%A0%E0%B8%95./%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8/07062561-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%82%E0%B8%87%E0%B8%82%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%95%E0%B8%87%E0%B8%9A%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B8%87%E0%B8%9C%E0%B8%8A%E0%B8%A7%E0%B8%A2.pdf",
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("ข้อมูลอ้างอิง")]
-                      )
+                  _c("li", { staticStyle: { "font-size": "16px" } }, [
+                    _vm._v(
+                      "ความสามารถทั่วไป 50 คะแนน ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                "
+                    ),
+                    _c("ul", [
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "ความสามารถด้านตัวเลข ให้ทดสอบโดยการวัดความสามารถในการคิดเลข สรุปเหตุผลเกี่ยวกับตัวเลขและข้อมูลต่าง ๆ"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "ความสามารถด้านภาษาไทย ให้ทดสอบความเข้าใจภาษา การอ่านจับใจความ การสรุปความ การตีความ การขยายความ การเขียนข้อความ การสะกดคำ การแต่งประโยค และคำศัพท์"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "ความสามารถด้านเหตุผล ให้ทดสอบโดยการวัดความสามารถในการคิดสรุปหาเหตุผล และอุปมาอุปไมย"
+                        )
+                      ])
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticStyle: { "font-size": "16px" } }, [
+                    _vm._v(
+                      "ความรู้ความเข้าใจเกี่ยวกับคุณธรรม จริยธรรม และอุดมการณ์ของความเป็นครู และมาตรฐานวิชาชีพทางการศึกษา (50 คะแนน) ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                "
+                    ),
+                    _c("ul", [
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("คุณธรรม จริยธรรม และอุดมการณ์ของความเป็นครู")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("มาตรฐานด้านความรู้และประสบการณ์วิชาชีพ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("มาตรฐานด้านการปฏิบัติงาน")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("มาตรฐานด้านการปฏิบัติตน")
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("footer", { staticClass: "blockquote-footer" }, [
+                  _c("small", { staticClass: "text-muted" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href:
+                            "http://www.otepc.go.th/images/0_%E0%B8%A0%E0%B8%95./%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8/07062561-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%82%E0%B8%87%E0%B8%82%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%95%E0%B8%87%E0%B8%9A%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B8%87%E0%B8%9C%E0%B8%8A%E0%B8%A7%E0%B8%A2.pdf",
+                          target: "_blank"
+                        }
+                      },
+                      [_vm._v("ข้อมูลอ้างอิง")]
+                    )
                   ])
                 ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row", attrs: { id: "p2" } }, [
-            _c("div", { staticClass: "col-10 mx-auto" }, [
-              _c("div", { staticClass: "card p-3" }, [
-                _c("blockquote", { staticClass: "blockquote mb-0 card-body" }, [
-                  _c("p", [
-                    _vm._v("ภาค ข มีรายละเอียดการสอบดังนี้ (150 คะแนน)")
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", { staticStyle: { "font-size": "16px" } }, [
-                      _vm._v(
-                        "ความรู้ความสามารถเกี่ยวกับวิชาการศึกษา (75 คะแนน) ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                    "
-                      ),
-                      _c("ul", [
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("หลักสูตรและการพัฒนาหลักสูตร")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            "หลักการสอนที่เน้นการสอนคิดวิเคราะห์ และการจัดการเรียนรู้ที่เน้นผู้เรียนเป็นสำคัญ"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("จิตวิทยาการศึกษาและการแนะแนว")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("การพัฒนาผู้เรียน")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("การบริหารจัดการชั้นเรียน")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("การวิจัยทางการศึกษา")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("สื่อ นวัตกรรมและเทคโนโลยีทางการศึกษา")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("การวัดและประเมินผลการศึกษา")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("ลักษณะงานที่ปฏิบัติตามมาตรฐานตำแหน่ง")
-                        ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row", attrs: { id: "p2" } }, [
+          _c("div", { staticClass: "col-10 mx-auto" }, [
+            _c("div", { staticClass: "card p-3" }, [
+              _c("blockquote", { staticClass: "blockquote mb-0 card-body" }, [
+                _c("p", [_vm._v("ภาค ข มีรายละเอียดการสอบดังนี้ (150 คะแนน)")]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", { staticStyle: { "font-size": "16px" } }, [
+                    _vm._v(
+                      "ความรู้ความสามารถเกี่ยวกับวิชาการศึกษา (75 คะแนน) ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัย ในเรื่องดังต่อไปนี้\n                                "
+                    ),
+                    _c("ul", [
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("หลักสูตรและการพัฒนาหลักสูตร")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          "หลักการสอนที่เน้นการสอนคิดวิเคราะห์ และการจัดการเรียนรู้ที่เน้นผู้เรียนเป็นสำคัญ"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("จิตวิทยาการศึกษาและการแนะแนว")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("การพัฒนาผู้เรียน")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("การบริหารจัดการชั้นเรียน")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("การวิจัยทางการศึกษา")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("สื่อ นวัตกรรมและเทคโนโลยีทางการศึกษา")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("การวัดและประเมินผลการศึกษา")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("ลักษณะงานที่ปฏิบัติตามมาตรฐานตำแหน่ง")
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticStyle: { "font-size": "16px" } }, [
-                      _vm._v(
-                        "ความรู้ความสามารถเกี่ยวกับกลุ่มวิชา หรือทาง หรือสาขาวิชาเอก (75 คะแนน) ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัยและหรือภาคปฏิบัติเกี่ยวกับความรู้ในเนื้อหากลุ่มวิชา หรือทาง หรือสาขาวิชาเอก"
-                      )
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("footer", { staticClass: "blockquote-footer" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href:
-                              "http://www.otepc.go.th/images/0_%E0%B8%A0%E0%B8%95./%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8/07062561-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%82%E0%B8%87%E0%B8%82%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%95%E0%B8%87%E0%B8%9A%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B8%87%E0%B8%9C%E0%B8%8A%E0%B8%A7%E0%B8%A2.pdf",
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("ข้อมูลอ้างอิง")]
-                      )
-                    ])
+                  _c("li", { staticStyle: { "font-size": "16px" } }, [
+                    _vm._v(
+                      "ความรู้ความสามารถเกี่ยวกับกลุ่มวิชา หรือทาง หรือสาขาวิชาเอก (75 คะแนน) ให้ทดสอบโดยวิธีการสอบข้อเขียนแบบปรนัยและหรือภาคปฏิบัติเกี่ยวกับความรู้ในเนื้อหากลุ่มวิชา หรือทาง หรือสาขาวิชาเอก"
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("footer", { staticClass: "blockquote-footer" }, [
+                  _c("small", { staticClass: "text-muted" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href:
+                            "http://www.otepc.go.th/images/0_%E0%B8%A0%E0%B8%95./%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8/07062561-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%82%E0%B8%87%E0%B8%82%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%95%E0%B8%87%E0%B8%9A%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B8%87%E0%B8%9C%E0%B8%8A%E0%B8%A7%E0%B8%A2.pdf",
+                          target: "_blank"
+                        }
+                      },
+                      [_vm._v("ข้อมูลอ้างอิง")]
+                    )
                   ])
                 ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row", attrs: { id: "p3" } }, [
-            _c("div", { staticClass: "col-10 mx-auto" }, [
-              _c("div", { staticClass: "card p-3" }, [
-                _c("blockquote", { staticClass: "blockquote mb-0 card-body" }, [
-                  _c("p", [
-                    _vm._v("ภาค ค มีรายละเอียดการสอบดังนี้ (50 คะแนน) ")
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", { staticStyle: { "font-size": "16px" } }, [
-                      _vm._v(
-                        "ความเหมาะสมกับตำแหน่งและวิชาชีพ (50 คะแนน) ให้ประเมินโดยวิธีการสัมภาษณ์ สังเกต ตรวจสอบเอกสาร หรือวิธีอื่นที่เหมาะสม โดยประเมินจาก\n                                    "
-                      ),
-                      _c("ul", [
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("ประวัติส่วนตัวและการศึกษา")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("บุคลิกลักษณะ ท่วงทีวาจา")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("วุฒิภาวะทางอารมณ์")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("การมีปฏิภาณไหวพริบ")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v("ความคิดริเริ่มสร้างสรรค์ เจตคติและอุดมการณ์")
-                        ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row", attrs: { id: "p3" } }, [
+          _c("div", { staticClass: "col-10 mx-auto" }, [
+            _c("div", { staticClass: "card p-3" }, [
+              _c("blockquote", { staticClass: "blockquote mb-0 card-body" }, [
+                _c("p", [_vm._v("ภาค ค มีรายละเอียดการสอบดังนี้ (50 คะแนน) ")]),
+                _vm._v(" "),
+                _c("ul", [
+                  _c("li", { staticStyle: { "font-size": "16px" } }, [
+                    _vm._v(
+                      "ความเหมาะสมกับตำแหน่งและวิชาชีพ (50 คะแนน) ให้ประเมินโดยวิธีการสัมภาษณ์ สังเกต ตรวจสอบเอกสาร หรือวิธีอื่นที่เหมาะสม โดยประเมินจาก\n                                "
+                    ),
+                    _c("ul", [
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("ประวัติส่วนตัวและการศึกษา")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("บุคลิกลักษณะ ท่วงทีวาจา")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("วุฒิภาวะทางอารมณ์")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("การมีปฏิภาณไหวพริบ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v("ความคิดริเริ่มสร้างสรรค์ เจตคติและอุดมการณ์")
                       ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("footer", { staticClass: "blockquote-footer" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href:
-                              "http://www.otepc.go.th/images/0_%E0%B8%A0%E0%B8%95./%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8/07062561-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%82%E0%B8%87%E0%B8%82%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%95%E0%B8%87%E0%B8%9A%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B8%87%E0%B8%9C%E0%B8%8A%E0%B8%A7%E0%B8%A2.pdf",
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("ข้อมูลอ้างอิง")]
-                      )
-                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("footer", { staticClass: "blockquote-footer" }, [
+                  _c("small", { staticClass: "text-muted" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href:
+                            "http://www.otepc.go.th/images/0_%E0%B8%A0%E0%B8%95./%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%B2%E0%B8%A8/07062561-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%93%E0%B8%91%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B9%81%E0%B8%82%E0%B8%87%E0%B8%82%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%AD%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%88%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%95%E0%B8%87%E0%B8%9A%E0%B8%84%E0%B8%A5%E0%B9%80%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%9B%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%AB%E0%B8%99%E0%B8%87%E0%B8%9C%E0%B8%8A%E0%B8%A7%E0%B8%A2.pdf",
+                          target: "_blank"
+                        }
+                      },
+                      [_vm._v("ข้อมูลอ้างอิง")]
+                    )
                   ])
                 ])
               ])
@@ -39188,46 +39227,103 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container-fluid big_box" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row text-center" }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c("p", { staticClass: "topicTop" }, [_vm._v("ให้เซียมซีทำนายกัน")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row text-center" }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c("p", { staticClass: "text-center" }, [
-              _c(
-                "i",
-                {
-                  staticClass: "material-icons",
-                  staticStyle: { "font-size": "80px", color: "#fe6161" }
-                },
-                [_vm._v("device_unknown")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticStyle: { color: "#fe6161" } }, [
-              _vm._v("ตั้งจิตอธิษฐาน")
-            ]),
-            _vm._v(" "),
-            _c("span", [
-              _c("mark", [_vm._v("เขย่าโทรศัพท์เสี่ยงทายจนกว่าจะรู้ผล")])
-            ]),
-            _vm._v(" "),
+      _c("div", { staticClass: "row text-center" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("p", { staticClass: "topicTop" }, [_vm._v("ให้เซียมซีทำนายกัน")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row text-center", attrs: { id: "main" } }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("p", { staticClass: "text-center" }, [
             _c(
-              "p",
+              "i",
               {
-                staticStyle: {
-                  "font-size": "12px",
-                  color: "gray",
-                  "margin-top": "5px"
-                }
+                staticClass: "material-icons",
+                staticStyle: { "font-size": "80px", color: "#fe6161" }
+              },
+              [_vm._v("device_unknown")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", { staticStyle: { color: "#fe6161" } }, [
+            _vm._v("ตั้งจิตอธิษฐาน")
+          ]),
+          _vm._v(" "),
+          _c("span", [
+            _c("mark", [_vm._v("เขย่าโทรศัพท์เสี่ยงทายจนกว่าจะรู้ผล")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              staticStyle: {
+                "font-size": "12px",
+                color: "gray",
+                "margin-top": "5px"
+              }
+            },
+            [
+              _vm._v("ใช้บราวเซอร์ Google Chrome ผู้ที่ใช้คอมพิวเตอร์ "),
+              _c("a", { attrs: { href: "#", id: "btn_oncom" } }, [
+                _vm._v("คลิกที่นี่")
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "predict" } }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12 col-md-12 text-center" }, [
+            _c(
+              "div",
+              {
+                staticClass: "card bg-light mb-3 mx-auto",
+                staticStyle: { "max-width": "45rem" }
               },
               [
-                _vm._v("ใช้บราวเซอร์ Google, Chrome ผู้ที่ใช้คอมพิวเตอร์"),
-                _c("a", { attrs: { href: "#" } }, [_vm._v("คลิกที่นี่")])
+                _c("div", { staticClass: "card-header" }, [
+                  _c("span", { attrs: { id: "showing" } }, [
+                    _vm._v("กำลังเสี่ยงทาย")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body text-secondary" }, [
+                  _c("p", {
+                    staticClass: "card-title",
+                    staticStyle: { "font-size": "18px", color: "#82528b" }
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-spinner fa-spin",
+                    staticStyle: { "font-size": "35px" },
+                    attrs: { id: "animate" }
+                  }),
+                  _vm._v(" "),
+                  _c("p", {
+                    staticClass: "card-text text-left",
+                    staticStyle: {
+                      color: "gray",
+                      "font-weight": "300",
+                      "font-size": "18px"
+                    },
+                    attrs: { id: "result" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "text-right ref",
+                      staticStyle: { "font-size": "12px", color: "gray" },
+                      attrs: { id: "ref" }
+                    },
+                    [
+                      _c("u", [_vm._v("ที่มา")]),
+                      _vm._v(" วัดหนองบัว จังหวัดอุบลราชธานี")
+                    ]
+                  )
+                ])
               ]
             )
           ])
@@ -39278,7 +39374,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "container", attrs: { id: "contentAll" } }, [
         _c("div", { staticClass: "row mb-3" }, [
           _c("div", { staticClass: "col-md-10 col-sm-10 mx-auto" }, [
-            _c("div", { staticClass: "container mt-3" }, [
+            _c("div", { staticClass: "mt-3" }, [
               _c("h5", [
                 _vm._v("ข้อบังคับคุรุสภา ว่าด้วยมาตรฐานวิชาชีพ พ.ศ.2556")
               ]),
@@ -39430,7 +39526,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "container mt-3" }, [
+            _c("div", { staticClass: "mt-3" }, [
               _c("div", { staticClass: "bg-light media border p-3" }, [
                 _c("img", {
                   staticClass: "mr-3 mt-3 rounded-circle",
@@ -39574,7 +39670,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "container mt-3" }, [
+            _c("div", { staticClass: "mt-3" }, [
               _c("div", { staticClass: "bg-light media border p-3" }, [
                 _c("img", {
                   staticClass: "mr-3 mt-3 rounded-circle",
@@ -39597,7 +39693,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "container mt-3" }, [
+            _c("div", { staticClass: "mt-3" }, [
               _c(
                 "p",
                 { staticStyle: { "font-size": "14px", "font-weight": "300" } },
