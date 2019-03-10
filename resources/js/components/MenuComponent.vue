@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ฝึกทำข้อสอบ</a>
+                        <a class="nav-link" href="setup">ฝึกทำข้อสอบ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="how">ครูผู้ช่วยสอบอะไรบ้าง</a>

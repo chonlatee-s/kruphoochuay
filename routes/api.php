@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('credits','api\CreditsController');
 Route::resource('predicts','api\PredictsController');
+Route::resource('tests','api\TestsController');

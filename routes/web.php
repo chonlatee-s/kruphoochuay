@@ -26,3 +26,8 @@ Route::get('aboutme', function () {
 Route::resource('credits','CreditsController');
 Route::resource('contents','ContentsController');
 Route::resource('predicts','PredictsController');
+Route::resource('tests','TestsController');
+
+Route::get('setup', function () {
+    return view('setup');
+});

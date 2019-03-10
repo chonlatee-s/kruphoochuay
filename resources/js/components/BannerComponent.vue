@@ -12,7 +12,7 @@
                         <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="#">
+                                    <a href="setup">
                                         <i class="material-icons" style="font-size:70px;">assignment</i>
                                         <p class="menu_botton">ฝึกทำข้อสอบ</p>
                                     </a>
