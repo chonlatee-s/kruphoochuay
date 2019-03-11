@@ -10,7 +10,7 @@
 
     <div>
         <div class="row">
-            <div class="col-10 mx-auto">   
+            <div class="col-md-10 col-sm-12 mx-auto">   
                 <table id="myTable" class="table table-bordered table-striped table-sm">
                     <thead class="table-primary text-center">
                         <tr>

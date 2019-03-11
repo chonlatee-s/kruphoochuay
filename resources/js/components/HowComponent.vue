@@ -9,7 +9,7 @@
         </div>
         <div id="contentAll">
             <div class="row">
-                <div class="col-10 mx-auto">   
+                <div class="col-md-10 col-sm-12 mx-auto">   
                     <div class="card-group">
                         <div class="card">
                             <div class="card-body" style="padding-top:0">
@@ -45,7 +45,7 @@
             </div>
 
             <div id="p1" class="row mt-2">
-                <div class="col-10 mx-auto">
+                <div class="col-md-10 col-sm-12 mx-auto">
                     <div class="card p-3">
                         <blockquote class="blockquote mb-0 card-body">
                             <p>ภาค ก มีรายละเอียดการสอบดังนี้ (150 คะแนน)</p>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div id="p2" class="row">
-                <div class="col-10 mx-auto">
+                <div class="col-md-10 col-sm-12 mx-auto">
                     <div class="card p-3">
                         <blockquote class="blockquote mb-0 card-body">
                             <p>ภาค ข มีรายละเอียดการสอบดังนี้ (150 คะแนน)</p>
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div id="p3" class="row">
-                <div class="col-10 mx-auto">
+                <div class="col-md-10 col-sm-12 mx-auto">
                     <div class="card p-3">
                         <blockquote class="blockquote mb-0 card-body">
                             <p>ภาค ค มีรายละเอียดการสอบดังนี้ (50 คะแนน) </p>

@@ -11,7 +11,7 @@
         <!-- banner -->
         <div>
             <div class="row text-center">
-                <div class="col-10 mx-auto">
+                <div class="col-md-10 col-sm-12 mx-auto">
                     <div class="card bg-light mb-3" style="max-with: 40rem;">
                         <div class="card-body">
                             <blockquote class="blockquote mb-0 card-body">
