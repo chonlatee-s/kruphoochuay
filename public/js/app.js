@@ -2288,6 +2288,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 $(document).ready(function () {
   $('#predict').hide(); // shake
 
@@ -2538,6 +2543,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2650,6 +2656,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['topic'],
   data: function data() {
@@ -2664,12 +2676,12 @@ __webpack_require__.r(__webpack_exports__);
       }],
       arr: 0,
       answer: '',
-      percent: 50,
+      percent: 0,
       dataAll: [{
-        arr: 0,
-        answer: '',
+        arr: '',
         id: '',
-        answerTure: ''
+        answerTure: '',
+        answer: ''
       }]
     };
   },
@@ -2682,45 +2694,94 @@ __webpack_require__.r(__webpack_exports__);
       });
     } else {// window.location.href='/setup';
     }
+
+    this.setTimeX();
   },
   methods: {
+    pushData: function pushData() {
+      var theAnswerTrue = this.answer.split('|');
+      this.dataAll.splice(this.arr, 1, {
+        arr: this.arr,
+        id: theAnswerTrue[0],
+        answerTure: theAnswerTrue[1],
+        answer: this.answer
+      });
+      this.percent = this.dataAll.length * 10;
+      this.checkPercent();
+      this.next();
+    },
+    checkPercent: function checkPercent() {
+      if (this.percent == 10) {
+        $("#percent").removeClass("progress-bar").addClass("progress-bar progress-bar-striped progress-bar-animated bg-danger");
+      }
+
+      if (this.percent == 40) {
+        $("#percent").removeClass("bg-danger").addClass("progress-bar progress-bar-striped progress-bar-animated bg-bg-info");
+      }
+
+      if (this.percent == 80) {
+        $("#percent").removeClass("bg-bg-info").addClass("progress-bar progress-bar-striped progress-bar-animated bg-success");
+      }
+
+      $("#percent").css("width", this.percent + "%");
+      $("#percent").html(this.percent + "%");
+    },
     next: function next() {
-      this.arr++;
+      if (this.arr + 1 != 10) this.arr++; // เช็คว่าถึงตำแหน่งสุดท้ายของอาร์เรย์หรือยัง ถ้าครบแล้วไม่ต้องบวกเพิ่ม
 
-      if (!this.dataAll[this.arr]) {
-        if (document.querySelector('input[name="choice"]:checked')) {
-          document.querySelector('input[name="choice"]:checked').checked = false;
-          this.percent += 10;
-        } // this.answer=false;
-
-      } else {
-        this.answer = this.dataAll[this.arr].answer;
+      if (this.arr <= 9) {
+        if (!this.dataAll[this.arr]) {
+          // ถ้าไม่มีข้อมูลในอาเรย์ตำแหน่งนี้หรือยัง
+          this.dataAll.push({
+            arr: this.arr,
+            id: '',
+            answerTure: '',
+            answer: ''
+          });
+          this.clearRario();
+        } else {
+          if (this.dataAll[this.arr].answer) this.answer = this.dataAll[this.arr].answer;else this.clearRario();
+        }
       }
     },
     prev: function prev() {
       this.arr--;
-      this.answer = this.dataAll[this.arr].answer;
-    },
-    pushAnswer: function pushAnswer() {
-      var theAnswerTrue = this.answer.split('|');
 
-      if (!this.dataAll[this.arr]) {
-        this.dataAll.push({
-          arr: this.arr,
-          answer: this.answer,
-          id: theAnswerTrue[0],
-          answerTure: theAnswerTrue[1]
-        });
-      } else {
-        this.dataAll.splice(this.arr, 1, {
-          arr: this.arr,
-          answer: this.answer,
-          id: theAnswerTrue[0],
-          answerTure: theAnswerTrue[1]
-        });
+      if (this.arr >= 0) {
+        if (this.dataAll[this.arr].answer) {
+          // ถ้าตำแหน่งนี้มีการป้อนค่าแล้วค่อยนำมาแสดง
+          this.answer = this.dataAll[this.arr].answer;
+        }
+      }
+    },
+    clearRario: function clearRario() {
+      if (document.querySelector('input[name="choice"]:checked')) {
+        document.querySelector('input[name="choice"]:checked').checked = false;
+      }
+    },
+    /////////////////////////////////////////// time
+    setTimeX: function setTimeX() {
+      var myVar = setInterval(myTimer, 1000);
+      var m = 9,
+          sec = 60;
+
+      function myTimer() {
+        if (sec != 0) sec = sec - 1;else {
+          if (m == 0) {
+            myStopFunction(); // if(xxx==100){ sendAnswer(); alert('หมดเวลาในการทำแบบทดสอบ'); } ใช้ตอนกดปุ่ม เดี๋ยวค่อยดู
+          }
+
+          m = m - 1;
+          sec = 60;
+        }
+        if (m == -1) $(".clock").html("หมดเวลาในการทำแบบทดสอบ");else {
+          if (m == 0) $(".clock").html('เหลือเวลา ' + sec + " วินาที");else $(".clock").html('เหลือเวลา ' + m + " นาที " + sec + " วินาที");
+        }
       }
 
-      this.next();
+      function myStopFunction() {
+        clearInterval(myVar);
+      }
     }
   }
 });
@@ -7222,7 +7283,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.btn_{\n    padding-top:0px;\n    padding-bottom:0px;\n}\n", ""]);
+exports.push([module.i, "\n.btn_{padding-top:0px;padding-bottom:0px;}\n.question{font-size: 18px;padding-bottom:10px;}\n.choice{font-size: 16px;padding-left:10px;}\n.clock{font-size: 24px;}\n.choice_sub{padding-left: 10px;}\ninput[type='radio'] { -webkit-transform: scale(1.5); transform: scale(1.5);\n}\n", ""]);
 
 // exports
 
@@ -39559,11 +39620,19 @@ var staticRenderFns = [
                       staticStyle: { "font-size": "18px", color: "#82528b" }
                     }),
                     _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-spinner fa-spin",
-                      staticStyle: { "font-size": "35px" },
-                      attrs: { id: "animate" }
-                    }),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "spinner-grow text-info",
+                        staticStyle: { width: "3rem", height: "3rem" },
+                        attrs: { role: "status", id: "animate" }
+                      },
+                      [
+                        _c("span", { staticClass: "sr-only" }, [
+                          _vm._v("Loading...")
+                        ])
+                      ]
+                    ),
                     _vm._v(" "),
                     _c("p", {
                       staticClass: "card-text text-left",
@@ -40188,7 +40257,7 @@ var render = function() {
             {
               staticClass:
                 "progress-bar progress-bar-striped progress-bar-animated",
-              staticStyle: { width: "40%" },
+              staticStyle: { width: "0%" },
               attrs: {
                 id: "percent",
                 role: "progressbar",
@@ -40207,10 +40276,10 @@ var render = function() {
           "div",
           {
             staticClass: "card text-white ",
-            staticStyle: { "background-color": "#6699cc" }
+            staticStyle: { "background-color": "#336699" }
           },
           [
-            _c("div", { staticClass: "card-header text-center xzyTime" }, [
+            _c("div", { staticClass: "card-header text-center clock" }, [
               _vm._v("เริ่มจับเวลา")
             ]),
             _vm._v(" "),
@@ -40218,18 +40287,23 @@ var render = function() {
               "div",
               {
                 staticClass: "card-body",
-                staticStyle: { "background-color": "#3399cc" }
+                staticStyle: { "background-color": "#3973ac" }
               },
               [
                 _c("table", [
                   _c("tr", [
-                    _c("td", [
-                      _vm._v(_vm._s(_vm.DataCredits[_vm.arr].question))
+                    _c("td", { staticClass: "question" }, [
+                      _vm._v(
+                        "ข้อ " +
+                          _vm._s(_vm.arr + 1) +
+                          "  " +
+                          _vm._s(_vm.DataCredits[_vm.arr].question)
+                      )
                     ])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", [
+                    _c("td", { staticClass: "choice" }, [
                       _c("input", {
                         directives: [
                           {
@@ -40253,17 +40327,20 @@ var render = function() {
                               _vm.answer = _vm.DataCredits[_vm.arr].id + "|1"
                             },
                             function($event) {
-                              return _vm.pushAnswer()
+                              return _vm.pushData()
                             }
                           ]
                         }
                       }),
-                      _vm._v(" " + _vm._s(_vm.DataCredits[_vm.arr].ch1))
+                      _vm._v(" "),
+                      _c("span", { staticClass: "choice_sub" }, [
+                        _vm._v("   " + _vm._s(_vm.DataCredits[_vm.arr].ch1))
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", [
+                    _c("td", { staticClass: "choice" }, [
                       _c("input", {
                         directives: [
                           {
@@ -40287,17 +40364,20 @@ var render = function() {
                               _vm.answer = _vm.DataCredits[_vm.arr].id + "|2"
                             },
                             function($event) {
-                              return _vm.pushAnswer()
+                              return _vm.pushData()
                             }
                           ]
                         }
                       }),
-                      _vm._v(" " + _vm._s(_vm.DataCredits[_vm.arr].ch2))
+                      _vm._v(" "),
+                      _c("span", { staticClass: "choice_sub" }, [
+                        _vm._v("   " + _vm._s(_vm.DataCredits[_vm.arr].ch2))
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", [
+                    _c("td", { staticClass: "choice" }, [
                       _c("input", {
                         directives: [
                           {
@@ -40321,17 +40401,20 @@ var render = function() {
                               _vm.answer = _vm.DataCredits[_vm.arr].id + "|3"
                             },
                             function($event) {
-                              return _vm.pushAnswer()
+                              return _vm.pushData()
                             }
                           ]
                         }
                       }),
-                      _vm._v(" " + _vm._s(_vm.DataCredits[_vm.arr].ch3))
+                      _vm._v(" "),
+                      _c("span", { staticClass: "choice_sub" }, [
+                        _vm._v("   " + _vm._s(_vm.DataCredits[_vm.arr].ch3))
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", [
+                    _c("td", { staticClass: "choice" }, [
                       _c("input", {
                         directives: [
                           {
@@ -40355,12 +40438,15 @@ var render = function() {
                               _vm.answer = _vm.DataCredits[_vm.arr].id + "|4"
                             },
                             function($event) {
-                              return _vm.pushAnswer()
+                              return _vm.pushData()
                             }
                           ]
                         }
                       }),
-                      _vm._v(" " + _vm._s(_vm.DataCredits[_vm.arr].ch4))
+                      _vm._v(" "),
+                      _c("span", { staticClass: "choice_sub" }, [
+                        _vm._v("   " + _vm._s(_vm.DataCredits[_vm.arr].ch4))
+                      ])
                     ])
                   ])
                 ])
@@ -40373,57 +40459,107 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row mt-2" }, [
       _c("div", { staticClass: "col-md-10 col-sm-12 mx-auto" }, [
-        _c(
-          "ul",
-          { staticClass: "pagination pagination-sm justify-content-center" },
-          [
-            _c("li", { staticClass: "page-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#", "aria-label": "Previous" },
-                  on: {
-                    click: function($event) {
-                      return _vm.prev()
-                    }
-                  }
-                },
-                [
-                  _c("span", { attrs: { "aria-hidden": "true" } }, [
-                    _vm._v("«")
+        _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+          _c(
+            "ul",
+            { staticClass: "pagination pagination-sm justify-content-center" },
+            [
+              _vm.arr == 0
+                ? _c("li", { staticClass: "page-item disabled" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#", "aria-label": "Previous" },
+                        on: {
+                          click: function($event) {
+                            return _vm.prev()
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("«")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "sr-only" }, [
+                          _vm._v("Previous")
+                        ])
+                      ]
+                    )
+                  ])
+                : _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#", "aria-label": "Previous" },
+                        on: {
+                          click: function($event) {
+                            return _vm.prev()
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("«")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "sr-only" }, [
+                          _vm._v("Previous")
+                        ])
+                      ]
+                    )
                   ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c("li", { staticClass: "page-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#", "aria-label": "Next" },
-                  on: {
-                    click: function($event) {
-                      return _vm.next()
-                    }
-                  }
-                },
-                [
-                  _c("span", { attrs: { "aria-hidden": "true" } }, [
-                    _vm._v("»")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
-                ]
-              )
-            ])
-          ]
-        )
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm.arr == 9
+                ? _c("li", { staticClass: "page-item disabled" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#", "aria-label": "Next" },
+                        on: {
+                          click: function($event) {
+                            return _vm.next()
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("»")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+                      ]
+                    )
+                  ])
+                : _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#", "aria-label": "Next" },
+                        on: {
+                          click: function($event) {
+                            return _vm.next()
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("»")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+                      ]
+                    )
+                  ])
+            ]
+          )
+        ])
       ])
     ])
   ])
@@ -40445,7 +40581,7 @@ var staticRenderFns = [
             _c("p", [
               _c("b", [_c("u", [_vm._v("คำชี้แจง")])]),
               _vm._v(
-                " ข้อสอบมีทั้งหมด 10 ข้อ เวลาในการทำ 10 นาที จงเลือกคำตอบที่ถูกต้องเพียงหนึ่งข้อ "
+                " ข้อสอบมีทั้งหมด 10 ข้อ เวลาในการทำ 10 นาที จงเลือกคำตอบที่ถูกต้องเพียงข้อเดียว "
               )
             ]),
             _vm._v(" "),

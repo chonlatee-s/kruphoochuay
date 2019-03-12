@@ -45,3 +45,4 @@ const app = new Vue({
 const footer = new Vue({
     el: '#footer'
 });
+

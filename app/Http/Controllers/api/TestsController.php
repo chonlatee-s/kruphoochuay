@@ -51,6 +51,7 @@ class TestsController extends Controller
         $tests = DB::table('tests')
         ->select('id', 'question', 'ch1', 'ch2', 'ch3', 'ch4')
         ->where('mode', '=', $id)
+        ->inRandomOrder()
         ->get();
         return response() -> json($tests);
     }

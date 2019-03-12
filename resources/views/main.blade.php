@@ -19,7 +19,7 @@
     </div>
     <div id="footer" class="container footer text-center">
         <share-component></share-component>
-        <p style="font-size: 12px; color:gray">Copyright © 2019 CHONLATEE SINSART</p>
+        <p style="font-size: 12px; color:gray">สงวนลิขสิทธิ์ © 2562 ครูผู้ช่วย.com</p>
     </div>
     <script src="js/app.js"></script>
     <script src="js/shake.js"></script>

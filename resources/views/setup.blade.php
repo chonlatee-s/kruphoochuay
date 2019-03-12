@@ -16,7 +16,7 @@
                     <div class="col-md-6 mx-auto">
                     <p class="text-center"></p> 
                         <div class="form-group">            
-                            <select class="custom-select mb-3 text-center" name="topic">
+                            <select class="custom-select mb-3 text-center" name="topic" id="topic">
                                 <option value="0">กรุณาเลือกหัวข้อที่ต้องการทดสอบ</option>
                                 <option value="1">หมวดวิชาภาค ก</option>
                                 <option value="2">หมวดวิชาภาค ข</option>

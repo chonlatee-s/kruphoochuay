@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=K2D:400,500');
+/* @import url('https://fonts.googleapis.com/css?family=K2D:400,500'); */
+@import url('https://fonts.googleapis.com/css?family=Sarabun:400,500,800');
 
 body{
-	font-family: 'K2D', sans-serif;
+	font-family: 'Sarabun', sans-serif;
 	background-color: #fcfafa;
 }
 .menu{font-size: 14px; font-weight: 500; margin-top: 15px;}

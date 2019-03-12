@@ -24,7 +24,12 @@
                         <div class="card-header"><span id="showing">กำลังเสี่ยงทาย</span></div>
                         <div class="card-body text-secondary">
                             <p style="font-size:18px; color:#82528b" class="card-title text-center"></p>
-                            <i class="fa fa-spinner fa-spin" style="font-size:35px" id="animate"></i>
+                            <!-- <i class="fa fa-spinner fa-spin" style="font-size:35px" id="animate"></i> -->
+                            
+                            <div class="spinner-grow text-info" style="width: 3rem; height: 3rem;" role="status" id="animate">
+                            <span class="sr-only">Loading...</span>
+                            </div>
+
                             <p class="card-text text-left" style="color:gray; font-weight: 300; font-size:18px" id="result"></p>
                             <p style="font-size:12px; color:gray;" class="text-right ref" id="ref"><u>ที่มา</u> วัดหนองบัว จังหวัดอุบลราชธานี</p>
                         </div>

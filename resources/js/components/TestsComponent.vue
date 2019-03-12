@@ -3,7 +3,7 @@
         <div class="row text-center">
             <div class="col-md-10 col-sm-12 mx-auto mb-2">  
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <p><b><u>คำชี้แจง</u></b> ข้อสอบมีทั้งหมด 10 ข้อ เวลาในการทำ 10 นาที จงเลือกคำตอบที่ถูกต้องเพียงหนึ่งข้อ </p>
+                    <p><b><u>คำชี้แจง</u></b> ข้อสอบมีทั้งหมด 10 ข้อ เวลาในการทำ 10 นาที จงเลือกคำตอบที่ถูกต้องเพียงข้อเดียว </p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,22 +14,22 @@
         <div class="row">
             <div class="col-md-10 col-sm-12 mx-auto"> 
                 <div class="progress mb-2">
-                    <div id="percent" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:40%;" aria-valuemax="100">{{percent}}</div>
+                    <div id="percent" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:0%;" aria-valuemax="100">{{percent}}</div>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-10 col-sm-12 mx-auto">
-                <div class="card text-white " style="background-color:#6699cc">
-                    <div class="card-header text-center xzyTime">เริ่มจับเวลา</div>
-                    <div class="card-body" style="background-color:#3399cc">
+                <div class="card text-white " style="background-color:#336699">
+                    <div class="card-header text-center clock">เริ่มจับเวลา</div>
+                    <div class="card-body" style="background-color:#3973ac">
                         <table>
-                            <tr><td>{{DataCredits[arr].question}}</td></tr>
-                            <tr><td><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|1'" v-model="answer" @change="pushAnswer()"> {{DataCredits[arr].ch1}}</td></tr>
-                            <tr><td><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|2'" v-model="answer" @change="pushAnswer()"> {{DataCredits[arr].ch2}}</td></tr>
-                            <tr><td><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|3'" v-model="answer" @change="pushAnswer()"> {{DataCredits[arr].ch3}}</td></tr>
-                            <tr><td><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|4'" v-model="answer" @change="pushAnswer()"> {{DataCredits[arr].ch4}}</td></tr>
+                            <tr><td class="question">ข้อ {{arr+1}} &nbsp;{{DataCredits[arr].question}}</td></tr>
+                            <tr><td class="choice"><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|1'" v-model="answer" @change="pushData()"> <span class="choice_sub"> &nbsp;&nbsp;{{DataCredits[arr].ch1}}</span></td></tr>
+                            <tr><td class="choice"><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|2'" v-model="answer" @change="pushData()"> <span class="choice_sub"> &nbsp;&nbsp;{{DataCredits[arr].ch2}}</span></td></tr>
+                            <tr><td class="choice"><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|3'" v-model="answer" @change="pushData()"> <span class="choice_sub"> &nbsp;&nbsp;{{DataCredits[arr].ch3}}</span></td></tr>
+                            <tr><td class="choice"><input type="radio" name="choice" v-bind:value="DataCredits[arr].id+'|4'" v-model="answer" @change="pushData()"> <span class="choice_sub"> &nbsp;&nbsp;{{DataCredits[arr].ch4}}</span></td></tr>
                         </table>
                     </div>
                 </div>
@@ -38,32 +38,38 @@
 
         <div class="row mt-2">
             <div class="col-md-10 col-sm-12 mx-auto">
-                <!-- <button type="button" class="btn btn_ btn-outline-info btn-sm" v-on:click="prev()"><i class="material-icons">keyboard_arrow_left</i></button>
-                <button type="button" class="btn btn_ btn-outline-info btn-sm" v-on:click="next()"><i class="material-icons">keyboard_arrow_right</i></button> -->
-                <!-- <div class="row">
-                    <div class="col-4 text-left"><button type="button" class="btn btn_ btn-outline-info btn-sm" v-on:click="prev()">&laquo;</button></div>
-                    <div class="col-4 text-center"><p style="color:gray; font-size:12px; font-weight:200; margin-right:0px;">หมวดวิชาภาค ก</p></div>
-                    <div class="col-4 text-right"><button type="button" class="btn btn_ btn-outline-info btn-sm" v-on:click="next()">&raquo;</button></div>
-                </div> -->
-                <!-- <p class="text-right" style="color:gray; font-size:12px; font-weight:200; margin-right:0px;">หมวดวิชาภาค ก</p> -->
-
-         
+                <nav aria-label="Page navigation example">
                     <ul class="pagination pagination-sm justify-content-center">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous" v-on:click="prev()">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
+                        <li class="page-item disabled" v-if="arr==0">
+                            <a class="page-link" href="#" aria-label="Previous" v-on:click="prev()">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
                         </li>
+                        <li class="page-item" v-else>
+                            <a class="page-link" href="#" aria-label="Previous" v-on:click="prev()">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        
                         <li class="page-item"><a class="page-link" href="#">หมวดวิชาภาค ก</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next" v-on:click="next()">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
+
+                        <li class="page-item disabled" v-if="arr==9">
+                            <a class="page-link" href="#" aria-label="Next" v-on:click="next()">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </li>
+                        <li class="page-item" v-else>
+                            <a class="page-link" href="#" aria-label="Next" v-on:click="next()">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+
                     </ul>
-               
+                </nav>
             </div>
         </div>
 
@@ -78,8 +84,8 @@ export default {
             DataCredits:[{id:'', question:'', ch1:'', ch2:'', ch3:'', ch4:''}],
             arr:0,
             answer:'',
-            percent:50,
-            dataAll:[{ arr:0, answer:'', id:'', answerTure:'' }]
+            percent:0,
+            dataAll:[{ arr:'', id:'', answerTure:'', answer:'' }]
         }
     },
     mounted(){
@@ -90,42 +96,82 @@ export default {
         }else {
             // window.location.href='/setup';
         }
+        this.setTimeX();
     },
     methods: {
+        pushData() {
+            var theAnswerTrue = this.answer.split('|');
+            this.dataAll.splice(this.arr, 1, {arr:this.arr, id:theAnswerTrue[0], answerTure:theAnswerTrue[1], answer:this.answer })
+            this.percent = this.dataAll.length * 10;
+            this.checkPercent();
+            this.next();
+        },
+        checkPercent(){
+            if(this.percent==10){$("#percent").removeClass("progress-bar").addClass("progress-bar progress-bar-striped progress-bar-animated bg-danger"); }
+            if(this.percent==40){$("#percent").removeClass("bg-danger").addClass("progress-bar progress-bar-striped progress-bar-animated bg-bg-info"); }
+            if(this.percent==80){$("#percent").removeClass("bg-bg-info").addClass("progress-bar progress-bar-striped progress-bar-animated bg-success"); }
+            $("#percent").css("width", this.percent+"%");
+            $("#percent").html(this.percent+"%");
+        },
         next() {
-            this.arr++;
-            if(!this.dataAll[this.arr]) {
-                if(document.querySelector('input[name="choice"]:checked')){
-                    document.querySelector('input[name="choice"]:checked').checked = false;
-                    this.percent += 10;
+             if(this.arr+1 != 10) this.arr++; // เช็คว่าถึงตำแหน่งสุดท้ายของอาร์เรย์หรือยัง ถ้าครบแล้วไม่ต้องบวกเพิ่ม
+             if(this.arr<=9){
+                if(!this.dataAll[this.arr]){ // ถ้าไม่มีข้อมูลในอาเรย์ตำแหน่งนี้หรือยัง
+                    this.dataAll.push({arr:this.arr, id:'', answerTure:'', answer:''})
+                    this.clearRario();
+                }else{
+                    if(this.dataAll[this.arr].answer) this.answer = this.dataAll[this.arr].answer;
+                    else this.clearRario();
                 }
-                // this.answer=false;
-            }
-            else {
-                this.answer=this.dataAll[this.arr].answer;
             }
         },
+        
         prev() {
             this.arr--;
-            this.answer=this.dataAll[this.arr].answer;
+            if(this.arr>=0){
+                if(this.dataAll[this.arr].answer){ // ถ้าตำแหน่งนี้มีการป้อนค่าแล้วค่อยนำมาแสดง
+                    this.answer=this.dataAll[this.arr].answer;
+                }
+            }
         },
-        pushAnswer() {
-            var theAnswerTrue = this.answer.split('|');
-            if(!this.dataAll[this.arr]) {
-                this.dataAll.push({ arr:this.arr, answer:this.answer, id:theAnswerTrue[0], answerTure:theAnswerTrue[1] })
+        clearRario(){
+            if(document.querySelector('input[name="choice"]:checked')){
+                document.querySelector('input[name="choice"]:checked').checked = false;
             }
-            else {
-                this.dataAll.splice(this.arr, 1, {arr:this.arr, answer:this.answer, id:theAnswerTrue[0], answerTure:theAnswerTrue[1]})
+        },
+        /////////////////////////////////////////// time
+        setTimeX(){
+        	var myVar = setInterval(myTimer, 1000);
+            var m = 9, sec = 60;
+            function myTimer() {
+                if (sec != 0) sec = sec - 1;
+                else {
+                    if (m == 0) { 
+                        myStopFunction(); 
+                        // if(xxx==100){ sendAnswer(); alert('หมดเวลาในการทำแบบทดสอบ'); } ใช้ตอนกดปุ่ม เดี๋ยวค่อยดู
+                    }
+                    m = m - 1; sec = 60;
+                }
+                if(m== (-1) ) $(".clock").html("หมดเวลาในการทำแบบทดสอบ");
+                else {
+                    if(m==0) $(".clock").html('เหลือเวลา '+sec+" วินาที");
+                    else $(".clock").html('เหลือเวลา '+m+" นาที "+sec+" วินาที");
+                }
             }
-            this.next();
+
+            function myStopFunction() {
+                clearInterval(myVar);
+            }
         }
     }
 }
 </script>
 
 <style>
-    .btn_{
-        padding-top:0px;
-        padding-bottom:0px;
-    }
+    .btn_{padding-top:0px;padding-bottom:0px;}
+    .question{font-size: 18px;padding-bottom:10px;}
+    .choice{font-size: 16px;padding-left:10px;}
+    .clock{font-size: 24px;}
+    .choice_sub{padding-left: 10px;}
+    input[type='radio'] { transform: scale(1.5); }
 </style>
