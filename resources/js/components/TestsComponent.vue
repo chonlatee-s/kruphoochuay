@@ -102,16 +102,20 @@ export default {
         pushData() {
             var theAnswerTrue = this.answer.split('|');
             this.dataAll.splice(this.arr, 1, {arr:this.arr, id:theAnswerTrue[0], answerTure:theAnswerTrue[1], answer:this.answer })
-            this.percent = this.dataAll.length * 10;
             this.checkPercent();
             this.next();
         },
         checkPercent(){
-            if(this.percent==10){$("#percent").removeClass("progress-bar").addClass("progress-bar progress-bar-striped progress-bar-animated bg-danger"); }
-            if(this.percent==40){$("#percent").removeClass("bg-danger").addClass("progress-bar progress-bar-striped progress-bar-animated bg-bg-info"); }
-            if(this.percent==80){$("#percent").removeClass("bg-bg-info").addClass("progress-bar progress-bar-striped progress-bar-animated bg-success"); }
-            $("#percent").css("width", this.percent+"%");
-            $("#percent").html(this.percent+"%");
+            var count=0;
+            var num = this.dataAll.map(function(data){
+                if(data.id) count+=10;
+            })
+
+            if(count==10){$("#percent").removeClass("progress-bar").addClass("progress-bar progress-bar-striped progress-bar-animated bg-danger"); }
+            if(count==40){$("#percent").removeClass("bg-danger").addClass("progress-bar progress-bar-striped progress-bar-animated bg-bg-info"); }
+            if(count==80){$("#percent").removeClass("bg-bg-info").addClass("progress-bar progress-bar-striped progress-bar-animated bg-success"); }
+            $("#percent").css("width", count+"%");
+            $("#percent").html(count+"%");
         },
         next() {
              if(this.arr+1 != 10) this.arr++; // เช็คว่าถึงตำแหน่งสุดท้ายของอาร์เรย์หรือยัง ถ้าครบแล้วไม่ต้องบวกเพิ่ม
