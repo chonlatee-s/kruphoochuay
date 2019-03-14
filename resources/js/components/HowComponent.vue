@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div id="p2" class="row">
+            <div id="p2" class="row mt-2">
                 <div class="col-md-10 col-sm-12 mx-auto">
                     <div class="card p-3">
                         <blockquote class="blockquote mb-0 card-body">
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div id="p3" class="row">
+            <div id="p3" class="row mt-2">
                 <div class="col-md-10 col-sm-12 mx-auto">
                     <div class="card p-3">
                         <blockquote class="blockquote mb-0 card-body">

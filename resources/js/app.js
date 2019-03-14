@@ -29,7 +29,6 @@ Vue.component('share-component', require('./components/ShareComponent.vue').defa
 Vue.component('credits-component', require('./components/CreditsComponent.vue').default);
 Vue.component('contents-component', require('./components/ContentsComponent.vue').default);
 Vue.component('predicts-component', require('./components/PredictsComponent.vue').default);
-Vue.component('setup-component', require('./components/SetupComponent.vue').default);
 Vue.component('tests-component', require('./components/TestsComponent.vue').default);
 
 /**

@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-10 col-sm-12 mx-auto text-center"> 
                     <div class="card bg-light mb-3 mx-auto" style="max-width: 45rem;">
-                        <div class="card-header"><span id="showing">กำลังเสี่ยงทาย</span></div>
+                        <div class="card-header"><b><span id="showing">กำลังเสี่ยงทาย</span></b></div>
                         <div class="card-body text-secondary">
                             <p style="font-size:18px; color:#82528b" class="card-title text-center"></p>
                             <!-- <i class="fa fa-spinner fa-spin" style="font-size:35px" id="animate"></i> -->

@@ -37,7 +37,7 @@ class TestsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -46,16 +46,31 @@ class TestsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($data)
     {
-        $tests = DB::table('tests')
-        ->select('id', 'question', 'ch1', 'ch2', 'ch3', 'ch4')
-        ->where('mode', '=', $id)
-        ->inRandomOrder()
-        ->get();
-        return response() -> json($tests);
-    }
+        if (strlen($data)=='1') {
 
+            $tests = DB::table('tests')
+            ->select('id', 'question', 'ch1', 'ch2', 'ch3', 'ch4')
+            ->where('mode', '=', $data)
+            ->inRandomOrder()
+            ->get();
+            return response() -> json($tests);
+        }else{
+            $data_obj = json_decode($data);
+            $id_list=[];
+
+            foreach($data_obj as $obj){
+                $id_list[] = $obj->id;
+            }
+
+            $tests = DB::table('tests')
+            ->select('id', 'question', 'ch1', 'ch2', 'ch3', 'ch4','answer','ref')
+            ->whereIn('id', $id_list)
+            ->get();
+            return response() -> json($tests);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *
