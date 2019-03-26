@@ -33,8 +33,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <a href="#">
-                                        <i class="material-icons" style="font-size:70px;">assignment_ind</i>
-                                        <p class="menu_botton">เอกสารสัมภาษณ์</p>
+                                        <i class="material-icons" style="font-size:70px;">description</i>
+                                        <p class="menu_botton">ไฟล์เอกสารต่าง ๆ</p>
                                     </a>
                                 </div>
                             </div>

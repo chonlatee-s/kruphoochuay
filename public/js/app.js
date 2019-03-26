@@ -1793,8 +1793,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -38854,11 +38852,11 @@ var staticRenderFns = [
                           staticClass: "material-icons",
                           staticStyle: { "font-size": "70px" }
                         },
-                        [_vm._v("assignment_ind")]
+                        [_vm._v("description")]
                       ),
                       _vm._v(" "),
                       _c("p", { staticClass: "menu_botton" }, [
-                        _vm._v("เอกสารสัมภาษณ์")
+                        _vm._v("ไฟล์เอกสารต่าง ๆ")
                       ])
                     ])
                   ])
@@ -39062,21 +39060,25 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-10 mx-auto" }, [
-        _c("p", [
-          _vm._v(
-            "หากต้องการร่วมสร้างสังคมแห่งการแบ่งปัน ติดต่อผู้ดูแลเว็บไซต์ได้ที่อีเมล "
-          ),
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "mailto:kruphoochuay@gmail.com?Subject=สวัสดี",
-                target: "_top"
-              }
-            },
-            [_vm._v("kruphoochuay@gmail.com")]
-          )
-        ])
+        _c(
+          "p",
+          { staticStyle: { "font-size": "12px", "font-weight": "300" } },
+          [
+            _vm._v(
+              "หากต้องการร่วมสร้างสังคมแห่งการแบ่งปัน ติดต่อผู้ดูแลเว็บไซต์ได้ที่อีเมล "
+            ),
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "mailto:kruphoochuay@gmail.com?Subject=สวัสดี",
+                  target: "_top"
+                }
+              },
+              [_vm._v("kruphoochuay@gmail.com")]
+            )
+          ]
+        )
       ])
     ])
   }

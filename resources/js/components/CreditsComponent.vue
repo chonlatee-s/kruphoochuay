@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col-10 mx-auto">
-                <p>หากต้องการร่วมสร้างสังคมแห่งการแบ่งปัน ติดต่อผู้ดูแลเว็บไซต์ได้ที่อีเมล <a href="mailto:kruphoochuay@gmail.com?Subject=สวัสดี" target="_top">kruphoochuay@gmail.com</a></p>
+                <p style="font-size:12px; font-weight:300">หากต้องการร่วมสร้างสังคมแห่งการแบ่งปัน ติดต่อผู้ดูแลเว็บไซต์ได้ที่อีเมล <a href="mailto:kruphoochuay@gmail.com?Subject=สวัสดี" target="_top">kruphoochuay@gmail.com</a></p>
             </div>
         </div>
     </div>

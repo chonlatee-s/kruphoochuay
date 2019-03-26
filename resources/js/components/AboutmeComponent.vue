@@ -7,8 +7,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- banner -->
         <div>
             <div class="row text-center">
                 <div class="col-md-10 col-sm-12 mx-auto">
